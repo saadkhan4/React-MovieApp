@@ -1,6 +1,7 @@
 import React from "react";
 import Fire from "../../../assets/images/fire.png";
 import "./MovieList.css";
+import MovieCard from "./MovieCard";
 
 const MovieList = () => {
   return (
@@ -27,8 +28,11 @@ const MovieList = () => {
             <option value="">Descending</option>
           </select>
         </div>
-          </header>
-          <div className="movie_card"></div>
+      </header>
+      
+      <div className="movie_cards">
+        <MovieCard />
+          </div>
     </section>
   );
 };
