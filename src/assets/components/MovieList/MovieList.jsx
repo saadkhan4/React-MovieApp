@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import _ from "lodash";
 import Fire from "../../../assets/images/fire.png";
 import "./MovieList.css";
 import MovieCard from "./MovieCard";
@@ -8,12 +9,25 @@ const MovieList = () => {
   const [movies, setMovies] = useState([]);
   const [filterMovies, setFilterMovies] = useState([]);
   const [minRating, setMinRating] = useState(0);
+  //Store karta hai user ka current sort preference
+  const [sort, setSort] = useState({
+    by: "default",
+    order: "asc",
+  });
 
+  //Movies ko unki rating se filter karta hai
   const handleFilter = (rate) => {
     setMinRating(rate);
 
     const filtered = movies.filter((movie) => movie.vote_average >= rate);
     setFilterMovies(filtered);
+  };
+
+  //Sort ke options update karta hai (by/order)
+  const handleSort = (event) => {
+    const { name, value } = event.target;
+
+    setSort((prev) => ({ ...prev, [name]: value }));
   };
 
   const fetchMovies = async () => {
@@ -29,6 +43,17 @@ const MovieList = () => {
     fetchMovies();
   }, []);
 
+  useEffect(() => {
+    //agar sort.by ki value "default" nahi hai, tabhi sort karo.
+    if (sort.by !== "default") {
+      // _.orderBy() lodash ka function hai jo array ko sort karta hai.
+      // [sort.by] date or rating   // [sort.order] asc or desc
+      const sortedMovies = _.orderBy(filterMovies, [sort.by], [sort.order]);
+      setFilterMovies(sortedMovies);
+    }
+    // Jab bhi sort change hoga, poora useEffect dobara chalega.
+  }, [sort]);
+
   return (
     <section className="movie-list">
       <header className="align_center movie_list_header">
@@ -37,16 +62,28 @@ const MovieList = () => {
         </h2>
 
         <div className="align_center movie_list_fs ">
-        <FilterGroup minRating={minRating} onRatingClick={handleFilter}/>
-          <select name="sortBy" id="sortBy" className="movie_sorting">
-            <option value="">SortBy</option>
-            <option value="">Date</option>
-            <option value="">Rating</option>
+          <FilterGroup minRating={minRating} onRatingClick={handleFilter} />
+          <select
+            name="by"
+            id="sortBy"
+            onChange={handleSort}
+            value={sort.by}
+            className="movie_sorting"
+          >
+            <option value="default">SortBy</option>
+            <option value="release_date">Date</option>
+            <option value="vote_average">Rating</option>
           </select>
 
-          <select name="order" id="order" className="movie_sorting">
-            <option value="">Ascending</option>
-            <option value="">Descending</option>
+          <select
+            name="order"
+            id="order"
+            onChange={handleSort}
+            value={sort.order}
+            className="movie_sorting"
+          >
+            <option value="asc">Ascending</option>
+            <option value="desc">Descending</option>
           </select>
         </div>
       </header>
