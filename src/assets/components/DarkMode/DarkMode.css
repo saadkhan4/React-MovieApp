@@ -1,0 +1,54 @@
+.dark_mode {
+  display: inline-block;
+}
+
+.dark_mode_input {
+  display: none;
+}
+
+.dark_mode_label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 77px;
+  height: 35px;
+  background: #f0f0f0;
+  border-radius: 50px;
+  padding: 5px 8px;
+  cursor: pointer;
+  position: relative;
+  border: 2px solid #ddd;
+}
+
+.dark_mode_label img {
+  width: 18px;
+  height: 18px;
+  z-index: 1;
+}
+
+.dark_mode_label::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 25px;
+  height: 25px;
+  background: white;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.dark_mode_input:checked + .dark_mode_label::before {
+  left: 5px;
+  background: navajowhite;
+}
+
+.dark_mode_input:not(:checked) + .dark_mode_label::before {
+  left: calc(100% - 30px);
+  background: var(--body_color);
+}
+
+.dark_mode_input:checked + .dark_mode_label {
+  background: white;
+}

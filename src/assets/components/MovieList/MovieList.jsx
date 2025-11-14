@@ -52,13 +52,13 @@ const MovieList = () => {
       setFilterMovies(sortedMovies);
     }
     // Jab bhi sort change hoga, poora useEffect dobara chalega.
-  }, [sort]);
+  }, [sort, filterMovies]);
 
   return (
     <section className="movie-list">
       <header className="align_center movie_list_header">
         <h2 className="align_center movie_list_heading">
-          Popular <img src={Fire} alt="fire emoji" className="navbar_emoji" />
+          Binge-Worthy <img src={Fire} alt="fire emoji" className="navbar_emoji" />
         </h2>
 
         <div className="align_center movie_list_fs ">

@@ -7,11 +7,24 @@
   font-optical-sizing: auto;
   /* font-weight: <weight>; */
   font-style: normal;
+  transition: all 0.3s ease-in-out;
+}
+
+:root{
+  --body_background : #021233;
+  --body_color : navajowhite;
+  --heading_color: navajowhite;
+}
+
+[data-theme="light"]{
+  --body_background : white;
+  --body_color : #021233;
+  --heading_color: #021233;
 }
 
 body {
-  background-color: darkblue;
-  color: white;
+  background-color: var(--body_background);
+  color: var(--body_color);
 }
 
 .align_center{
