@@ -7,9 +7,11 @@ const App = () => {
   return (
     <div className="app">
       <Navbar />
-      <MovieList />
+      <MovieList type="popular" title="New Release" />
+      <MovieList type="top_rated" title="High Rated" />
+      <MovieList type="upcoming" title="Coming Soon" />
     </div>
-  )
+  );
 }
 
 export default App;

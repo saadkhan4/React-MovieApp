@@ -12,15 +12,15 @@ const Navbar = () => {
 
         <div className="navbar_links">
           <DarkMode />
-          <a href="">
-            New Release <img src={Fire} alt="fire emoji" className="navbar_emoji" />
+          <a href="#popular">
+            New Release{" "} <img src={Fire} alt="fire emoji" className="navbar_emoji" />
           </a>
-          <a href="">
-            High rated{" "}
+          <a href="#top_rated">
+            High Rated{" "}
             <img src={Star} alt="Star emoji" className="navbar_emoji" />
           </a>
-          <a href="">
-            Coming Soon{" "}
+          <a href="#upcoming">
+           Coming Soon{" "}
             <img src={Party} alt="Party emoji" className="navbar_emoji" />
           </a>
         </div>

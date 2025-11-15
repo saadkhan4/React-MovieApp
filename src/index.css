@@ -16,6 +16,10 @@
   --heading_color: navajowhite;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 [data-theme="light"]{
   --body_background : white;
   --body_color : #021233;
